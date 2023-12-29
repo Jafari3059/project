@@ -73,9 +73,9 @@ class Course {
     bool hasProjector;
     int studentCapacity;
     int* studentList;
-    ClassLocation classLocation;
    
-    Course(string id, string name, string teacher, Day day, Time time, bool hasProjector, int studentCapacity, ClassLocation location)
+   
+    Course(string id, string name, string teacher, Day day, Time time, bool hasProjector, int studentCapacity)
     {
       this->id = id;
       this->name = name;
@@ -84,7 +84,6 @@ class Course {
       this->time = time;
       this->hasProjector = hasProjector;
       this->studentCapacity = studentCapacity;
-      this->classLocation = classLocation;
       int* studentList = new int[studentCapacity];
       }
 };
