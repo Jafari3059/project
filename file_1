@@ -61,8 +61,21 @@ class Course {
       this->studentCapacity = studentCapacity;
       int* studentList = new int[studentCapacity];
       }
+      
+      Time finishingTime()
+      {
+            int finishingHour = this->time.startingHour + this->time.hourDuration;
+            int finishingMinute = this->time.startingMinute + this->time.minuteDuration;
+            Time finishingTime (finishingHour, finishingMinute, 0, 0);
+            return finishingTime;
+      }
+      
+      friend bool classInterference();
 };
 
+bool classInterference(Course course1, Course course2){
+      
+}
 
 class ClassLocation {
       int classNumber;
@@ -73,7 +86,7 @@ class ClassLocation {
       }
       
       
-      bool compareCoursesDuration(Course course1, Course course2)
+      bool compareClassesDuration(Course course1, Course course2)
       {
             if (course1.time.hourDuration > course2.time.hourDuration)
                   return true;
@@ -88,12 +101,8 @@ class ClassLocation {
                   return false;
       }
 
-      friend bool setCourse();
+      
 };
-
-
-bool setCourse(){}
-
 
 
 int main(void){return 0;}
