@@ -50,6 +50,20 @@ class Course {
     int studentCapacity;
     int* studentList;
    
+    public:
+    Course() {
+      this->id = "";
+      this->name = "";
+      this->teacher = "";
+      this->day = FRIDAY;
+      this->time.hourDuration = 0;
+      this->time.minuteDuration = 0;
+      this->time.startingHour = 0;
+      this->time.startingMinute = 0;
+      this->hasProjector = false;
+      this->studentCapacity = 0;
+      }     
+      
     Course(string id, string name, string teacher, Day day, Time time, bool hasProjector, int studentCapacity)
     {
       this->id = id;
@@ -72,10 +86,6 @@ class Course {
       
       friend bool classInterference();
 };
-
-bool classInterference(Course course1, Course course2){
-      
-}
 
 class ClassLocation {
       int classNumber;
@@ -104,5 +114,40 @@ class ClassLocation {
       
 };
 
+bool classInterference(Course course1, Course course2, ClassLocation classLocation1, ClassLocation classLocation2){
+      
+}
+
+class Node {
+      public:
+      Course course;
+      Node* next;
+      
+//    Node() {
+//          this->course = new Course;
+//          this->next = NULL;      
+//    }
+};
+
+class LinkedList {
+      public:
+      Node* head;
+
+      void addCourse(Course course)
+      {
+            Node* temp = new Node;
+            temp->course = course;
+            temp->next = NULL;
+            
+            if (head == NULL)
+            {
+                  head = temp;
+            }
+      }
+};
+
+class Amoozesh {
+      
+};
 
 int main(void){return 0;}
