@@ -38,18 +38,16 @@ class Time {
 };
 
 class ClassLocation {
-      int static counter;
       int classNumber;
       
-      public: ClassLocation()
+      public: ClassLocation(int classNumber = 0)
       {
-            this->classNumber = counter++;
+            this->classNumber = classNumber;
       }
 };
 
 class Course {
-      static int counter;
-    int id;
+      string id;
     string name;
     string teacher;
     Day day;
@@ -59,9 +57,9 @@ class Course {
     int* studentList;
     ClassLocation classLocation;
    
-    Course(string name, string teacher, Day day, Time time, bool hasProjector, int studentCapacity, ClassLocation location)
+    Course(string id, string name, string teacher, Day day, Time time, bool hasProjector, int studentCapacity, ClassLocation location)
     {
-      this->id = counter++;
+      this->id = id;
       this->name = name;
       this->teacher = teacher;
       this->day = day;
@@ -73,8 +71,6 @@ class Course {
       }
 };
 
-int ClassLocation::counter = 0;
-
-int Course::counter = 0;
 
 int main(void){return 0;}
+
