@@ -16,18 +16,34 @@ enum Day {
 };
 
 class Time {
-      int hour;
-      int minute;
+      int startingHour;
+      int startingMinute;
+      int hourDuration;
+      int minuteDuration;
       
       public: Time() {
-            hour = 0;
-            minute = 0;
+            startingHour = 0;
+            startingMinute = 0;
+            hourDuration = 0;
+            minuteDuration = 0;
       }
       
-      public: Time(int hour, int minute)
+      public: Time(int startingHour, int startingMinute, int hourDuration, int minuteDuration)
       {
-            this->hour = hour;
-            this->minute = minute;
+            this->startingHour = startingHour;
+            this->startingMinute = startingMinute;
+            this->hourDuration = hourDuration;
+            this->minuteDuration = minuteDuration;
+      }
+};
+
+class ClassLocation {
+      int static counter;
+      int classNumber;
+      
+      public: ClassLocation()
+      {
+            this->classNumber = counter++;
       }
 };
 
@@ -37,29 +53,28 @@ class Course {
     string name;
     string teacher;
     Day day;
-    Time startTime;
-    Time duration;
+    Time time;
     bool hasProjector;
     int studentCapacity;
     int* studentList;
-    int location;
-    Course(string name, string teacher, Day day, Time startTime, Time duration, bool hasProjector, int studentCapacity,int location)
+    ClassLocation classLocation;
+   
+    Course(string name, string teacher, Day day, Time time, bool hasProjector, int studentCapacity, ClassLocation location)
     {
       this->id = counter++;
       this->name = name;
       this->teacher = teacher;
       this->day = day;
-      this->startTime = startTime;
-      this->duration = duration;
+      this->time = time;
       this->hasProjector = hasProjector;
       this->studentCapacity = studentCapacity;
+      this->classLocation = classLocation;
       int* studentList = new int[studentCapacity];
-      this->location = location;
       }
 };
 
+int ClassLocation::counter = 0;
+
 int Course::counter = 0;
 
-int main(void){
-    return 0;
-}
+int main(void){return 0;}
