@@ -1,0 +1,65 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// capacity of courses
+const int MAX_COURSES = 100;
+
+enum Day {
+      SUNDAY,
+      MONDAY,
+      TUESDAY,
+      WEDNESDAY,
+      THURSDAY,
+      FRIDAY,
+      SATURDAY
+};
+
+class Time {
+      int hour;
+      int minute;
+      
+      public: Time() {
+            hour = 0;
+            minute = 0;
+      }
+      
+      public: Time(int hour, int minute)
+      {
+            this->hour = hour;
+            this->minute = minute;
+      }
+};
+
+class Course {
+      static int counter;
+    int id;
+    string name;
+    string teacher;
+    Day day;
+    Time startTime;
+    Time duration;
+    bool hasProjector;
+    int studentCapacity;
+    int* studentList;
+    int location;
+    Course(string name, string teacher, Day day, Time startTime, Time duration, bool hasProjector, int studentCapacity,int location)
+    {
+      this->id = counter++;
+      this->name = name;
+      this->teacher = teacher;
+      this->day = day;
+      this->startTime = startTime;
+      this->duration = duration;
+      this->hasProjector = hasProjector;
+      this->studentCapacity = studentCapacity;
+      int* studentList = new int[studentCapacity];
+      this->location = location;
+      }
+};
+
+int Course::counter = 0;
+
+int main(void){
+    return 0;
+}
