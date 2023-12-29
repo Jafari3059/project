@@ -16,6 +16,7 @@ enum Day {
 };
 
 class Time {
+      public:
       int startingHour;
       int startingMinute;
       int hourDuration;
@@ -44,9 +45,26 @@ class ClassLocation {
       {
             this->classNumber = classNumber;
       }
+      
+      
+      bool compareCoursesDuration(Course course1, Course course2)
+      {
+            if (course1->time->hourDuration > course2->time->hourDuration)
+                  return true;
+            else if (course1->time->hourDuration == course2->time->hourDuration)
+            {
+                  if (course1->time->minuteDuration > course2->time->minuteDuration)
+                        return true;
+                  else
+                        return false;     
+            }
+            else
+                  return false;
+      }
 };
 
 class Course {
+      public:
       string id;
     string name;
     string teacher;
@@ -73,4 +91,3 @@ class Course {
 
 
 int main(void){return 0;}
-
