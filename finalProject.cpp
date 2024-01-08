@@ -22,7 +22,8 @@ class Professor : User {
         this->ID = ID;
         this->password = password;
     }
-
+    
+    friend Time getFinishingTime(Course course);
     friend bool checkTimeConfliction(Course course1, Course course2);
     friend bool checkLocationConfliction(Course course1, Course course2);
 };
@@ -46,6 +47,7 @@ enum Day {
 };
 
 class Time {
+    public:
     int startingHour;
     int startingMinute;
     int hourDuration;
@@ -88,6 +90,7 @@ class Class {
 };
 
 class Course {
+    public:
     static int counter;
     int id;
     string name;
@@ -98,6 +101,7 @@ class Course {
     int* studentList;
     ClassLocation* classLocation;
     
+    public:
     Course(string name, Professor* professor = NULL, Day day, Time time, int studentCapacity, ClassLocation* location)
     {
         this->id = counter++;
@@ -113,8 +117,19 @@ class Course {
 
 int Course::counter = 0;
 
-bool checkTimeConfliction(Course course1, Course course2) {
+Time getFinishingTime(Course course) {
+    int finishingHour = course.time.startingHour + course.time.hourDuration;
+    int finishingMinute = course.time.startingMinute + course.time.minuteDuration;
+    Time finishingTime(finishingHour, finishingMinute, 0, 0);
+    return finishingTime;
+}
 
+bool checkTimeConfliction(Course course1, Course course2) {
+    // if (course1.time.startingHour < course2.time.startingHour)
+    // {
+    //     if (getFinishingTime(course1).startingHour < getFinishingTime(course2).startingHour)
+
+    // }
 }
 bool checkLocationConfliction(Course couse1, Course course2) {
 
