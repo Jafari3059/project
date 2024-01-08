@@ -4,9 +4,6 @@
 #include <vector>
 using namespace std;
 
-// capacity of courses
-const int MAX_COURSES = 100;
-
 class User {
     public:
     string name;
