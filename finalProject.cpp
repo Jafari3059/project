@@ -125,11 +125,20 @@ Time getFinishingTime(Course course) {
 }
 
 bool checkTimeConfliction(Course course1, Course course2) {
-    // if (course1.time.startingHour < course2.time.startingHour)
+    Time finishingTime1 = getFinishingTime(course1);
+    Time finishingTime2 = getFinishingTime(course2);
+
+    if (course1.time.startingHour <= finishingTime2.startingHour && course1.time.startingMinute <= finishingTime2.startingMinute) 
+        return false;
+    if (course1.time.startingHour >= finishingTime2.startingHour && course1.time.startingMinute >= finishingTime2.startingMinute) 
+        return false;
+    // if (course1.time.startingHour == course2.time.startingHour)
     // {
-    //     if (getFinishingTime(course1).startingHour < getFinishingTime(course2).startingHour)
 
     // }
+    return true;
+
+    
 }
 bool checkLocationConfliction(Course couse1, Course course2) {
 
