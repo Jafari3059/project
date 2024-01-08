@@ -5,6 +5,16 @@ using namespace std;
 // capacity of courses
 const int MAX_COURSES = 100;
 
+class User {
+    string name;
+    string ID;
+    User(string name, string ID)
+    {
+        this->name = name;
+        this->ID = ID;
+    }
+};
+
 enum Day {
     SUNDAY,
     MONDAY,
