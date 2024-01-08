@@ -6,10 +6,18 @@ using namespace std;
 const int MAX_COURSES = 100;
 
 class User {
+    public:
     string name;
     string ID;
-    User(string name, string ID)
+    User(string name = "", string ID = 0)
     {
+        this->name = name;
+        this->ID = ID;
+    }
+};
+
+class Professor : User {
+    Professor(string name, string ID) {
         this->name = name;
         this->ID = ID;
     }
