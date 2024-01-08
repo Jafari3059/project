@@ -61,42 +61,52 @@ class Time {
 };
 
 class ClassLocation {
-    int static counter;
     int classNumber;
 
-    public: ClassLocation()
+    public: ClassLocation(int classNumber)
     {
-        this->classNumber = counter++;
+        this->classNumber = classNumber;
     }
+};
+
+class Class {
+    int number;
+    bool hasProjector;
+    int capacity;
+    int* lessonID;
+
+    Class(int number, bool hasProjector, int capacity)
+    {
+        this->number = number;
+        this->hasProjector = hasProjector;
+        this->capacity = capacity;
+    }
+
 };
 
 class Course {
     static int counter;
     int id;
     string name;
-    string teacher;
+    Professor professor;
     Day day;
     Time time;
-    bool hasProjector;
     int studentCapacity;
     int* studentList;
     ClassLocation classLocation;
    
-    Course(string name, string teacher, Day day, Time time, bool hasProjector, int studentCapacity, ClassLocation location)
+    Course(string name, Professor professor, Day day, Time time, int studentCapacity, ClassLocation location)
     {
         this->id = counter++;
         this->name = name;
-        this->teacher = teacher;
+        this->professor = professor;
         this->day = day;
         this->time = time;
-        this->hasProjector = hasProjector;
         this->studentCapacity = studentCapacity;
         this->classLocation = classLocation;
         int* studentList = new int[studentCapacity];
     }
 };
-
-int ClassLocation::counter = 0;
 
 int Course::counter = 0;
 
