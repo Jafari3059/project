@@ -17,6 +17,8 @@ class User {
 };
 
 class Professor : User {
+    public:
+    Professor(){}
     Professor(string name, string ID, string password) {
         this->name = name;
         this->ID = ID;
@@ -29,6 +31,7 @@ class Professor : User {
 };
 
 class Student : User {
+    Student(){}
     Student(string name, string ID, string passwrod) {
         this->name = name;
         this->ID = ID;
@@ -66,8 +69,9 @@ class Time {
 };
 
 class ClassLocation {
+    public:
     int classNumber;
-
+    ClassLocation(){}
     public: ClassLocation(int classNumber)
     {
         this->classNumber = classNumber;
@@ -94,15 +98,15 @@ class Course {
     static int counter;
     int id;
     string name;
-    Professor* professor;
+    Professor professor;
     Day day;
     Time time;
     int studentCapacity;
     int* studentList;
-    ClassLocation* classLocation;
+    ClassLocation classLocation;
     
     public:
-    Course(string name, Professor* professor = NULL, Day day, Time time, int studentCapacity, ClassLocation* location)
+    Course(string name, Professor professor, Day day, Time time, int studentCapacity, ClassLocation location)
     {
         this->id = counter++;
         this->name = name;
@@ -138,10 +142,16 @@ bool checkTimeConfliction(Course course1, Course course2) {
     // }
     return true;
 
-    
+ 
 }
-bool checkLocationConfliction(Course couse1, Course course2) {
 
+bool checkLocationConfliction(Course course1, Course course2) {
+    if (course1.classLocation.classNumber != course2.classLocation.classNumber)
+        return false;
+    bool timeConflict = checkLocationConfliction(course1, course2);
+        if (timeConflict)
+            return false;
+        return true;
 }
 
 int main(void){
