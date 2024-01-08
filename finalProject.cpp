@@ -4,6 +4,9 @@
 #include <vector>
 using namespace std;
 
+class Course;
+class Time;
+
 class User {
     public:
     string name;
@@ -83,6 +86,7 @@ class Class {
     bool hasProjector;
     int capacity;
     int* lessonID;
+    static Class classes[];
 
     Class(int number, bool hasProjector, int capacity)
     {
@@ -120,6 +124,7 @@ class Course {
 };
 
 int Course::counter = 0;
+//Class Class:: classes[];
 
 Time getFinishingTime(Course course) {
     int finishingHour = course.time.startingHour + course.time.hourDuration;
@@ -132,20 +137,22 @@ bool checkTimeConfliction(Course course1, Course course2) {
     Time finishingTime1 = getFinishingTime(course1);
     Time finishingTime2 = getFinishingTime(course2);
 
-    if (course1.time.startingHour <= finishingTime2.startingHour && course1.time.startingMinute <= finishingTime2.startingMinute) 
+    if (course1.time.startingHour <= finishingTime2.startingHour && course1.time.startingMinute <= finishingTime2.startingMinute)
         return false;
     if (course1.time.startingHour >= finishingTime2.startingHour && course1.time.startingMinute >= finishingTime2.startingMinute) 
         return false;
+    cout<<"Can't operate the command. two classes are in time confliction";
     return true;
 }
+
 
 bool checkLocationConfliction(Course course1, Course course2) {
     if (course1.classLocation.classNumber != course2.classLocation.classNumber)
         return false;
     bool timeConflict = checkLocationConfliction(course1, course2);
-        if (timeConflict)
-            return false;
-        return true;
+        
+    cout<<"Can't operate the command. two classes are in location confliction";
+    return true;
 }
 
 int main(void){
