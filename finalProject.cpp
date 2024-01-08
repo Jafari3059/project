@@ -136,13 +136,7 @@ bool checkTimeConfliction(Course course1, Course course2) {
         return false;
     if (course1.time.startingHour >= finishingTime2.startingHour && course1.time.startingMinute >= finishingTime2.startingMinute) 
         return false;
-    // if (course1.time.startingHour == course2.time.startingHour)
-    // {
-
-    // }
     return true;
-
- 
 }
 
 bool checkLocationConfliction(Course course1, Course course2) {
