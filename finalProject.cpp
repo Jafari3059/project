@@ -88,14 +88,14 @@ class Course {
     static int counter;
     int id;
     string name;
-    Professor professor;
+    Professor* professor;
     Day day;
     Time time;
     int studentCapacity;
     int* studentList;
-    ClassLocation classLocation;
-   
-    Course(string name, Professor professor, Day day, Time time, int studentCapacity, ClassLocation location)
+    ClassLocation* classLocation;
+    
+    Course(string name, Professor* professor = NULL, Day day, Time time, int studentCapacity, ClassLocation* location)
     {
         this->id = counter++;
         this->name = name;
