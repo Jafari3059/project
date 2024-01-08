@@ -22,6 +22,9 @@ class Professor : User {
         this->ID = ID;
         this->password = password;
     }
+
+    friend bool checkTimeConfliction(Course course1, Course course2);
+    friend bool checkLocationConfliction(Course course1, Course course2);
 };
 
 class Student : User {
@@ -109,6 +112,13 @@ class Course {
 };
 
 int Course::counter = 0;
+
+bool checkTimeConfliction(Course course1, Course course2) {
+
+}
+bool checkLocationConfliction(Course couse1, Course course2) {
+
+}
 
 int main(void){
     // string fileName = "lessons.txt";
