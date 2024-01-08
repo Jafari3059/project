@@ -25,6 +25,13 @@ class Professor : User {
     }
 };
 
+class Student : User {
+    Student(string name, string ID) {
+        this->name = name;
+        this->ID = ID;
+    }
+};
+
 enum Day {
     SUNDAY,
     MONDAY,
@@ -94,16 +101,18 @@ int ClassLocation::counter = 0;
 int Course::counter = 0;
 
 int main(void){
-    string fileName = "lessons.txt";
-    ifstream file;
-    file.open(fileName);
+    // string fileName = "lessons.txt";
+    // ifstream file;
+    // file.open(fileName);
 
-    if (file.fail())
-        {
-        cout<<"Error in openning the file";
-        return 1;
-        }
+    // if (file.fail())
+    //     {
+    //     cout<<"Error in openning the file";
+    //     return 1;
+    //     }
 
-    vector<Course> courses;
+    // vector<Course> courses;
+
+
     return 0;
 }
