@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <vector>
 using namespace std;
 
 // capacity of courses
@@ -91,4 +93,17 @@ int ClassLocation::counter = 0;
 
 int Course::counter = 0;
 
-int main(void){return 0;}
+int main(void){
+    string fileName = "lessons.txt";
+    ifstream file;
+    file.open(fileName);
+
+    if (file.fail())
+        {
+        cout<<"Error in openning the file";
+        return 1;
+        }
+
+    vector<Course> courses;
+    return 0;
+}
