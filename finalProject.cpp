@@ -11,6 +11,7 @@ class User {
     public:
     string name;
     string ID;
+    string password;
     User(string name = "", string ID = 0)
     {
         this->name = name;
@@ -19,16 +20,18 @@ class User {
 };
 
 class Professor : User {
-    Professor(string name, string ID) {
+    Professor(string name, string ID, string password) {
         this->name = name;
         this->ID = ID;
+        this->password = password;
     }
 };
 
 class Student : User {
-    Student(string name, string ID) {
+    Student(string name, string ID, string passwrod) {
         this->name = name;
         this->ID = ID;
+        this->password = password;
     }
 };
 
