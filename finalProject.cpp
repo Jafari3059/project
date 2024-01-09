@@ -216,16 +216,14 @@ bool checkTimeConfliction(Course course1, Course course2) {
 
 bool checkLocationConfliction(Course course1, Course course2) {
     if (course1.classLocation.classNumber != course2.classLocation.classNumber)
-        return false;
-    bool timeConflict = checkLocationConfliction(course1, course2);
-        
-    cout<<"Can't operate the command. two classes are in location confliction";
+        return false;        
+    cout<<"Can't operate the command. two classes are in location confliction. they are both held in class: " + course1.classLocation.classNumber;
     return true;
 }
 
 void assignClasses(Course course, Class currentClass)
 {
-
+    
 }
 
 int main(void){
