@@ -31,6 +31,10 @@ class Professor : User {
     friend Time getFinishingTime(Course course);
     friend bool checkTimeConfliction(Course course1, Course course2);
     friend bool checkLocationConfliction(Course course1, Course course2);
+
+    void assignClasses(Course course, ) {
+
+    }
 };
 
 class Student : User {
@@ -108,9 +112,10 @@ class Course {
     int studentCapacity;
     int* studentList;
     ClassLocation classLocation;
+    bool hasProjector;
     
     public:
-    Course(string name, Professor professor, Day day, Time time, int studentCapacity, ClassLocation location)
+    Course(string name, Professor professor, Day day, Time time, int studentCapacity, ClassLocation location, bool hasProjector)
     {
         this->id = counter++;
         this->name = name;
@@ -120,6 +125,7 @@ class Course {
         this->studentCapacity = studentCapacity;
         this->classLocation = classLocation;
         int* studentList = new int[studentCapacity];
+        this->hasProjector = hasProjector;
     }
 };
 
