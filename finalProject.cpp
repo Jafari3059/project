@@ -6,6 +6,7 @@ using namespace std;
 
 class Course;
 class Time;
+class Class;
 
 class User {
     public:
@@ -31,10 +32,7 @@ class Professor : User {
     friend Time getFinishingTime(Course course);
     friend bool checkTimeConfliction(Course course1, Course course2);
     friend bool checkLocationConfliction(Course course1, Course course2);
-
-    void assignClasses(Course course, ) {
-
-    }
+    friend void assignClasses(Course course, Class currentClass);
 };
 
 class Student : User {
