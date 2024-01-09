@@ -84,26 +84,6 @@ class ClassLocation {
     }
 };
 
-class Class {
-    public:
-    int number;
-    bool hasProjector;
-    int capacity;
-    int* lessonID;
-    Course courses[10]; // 8 A.M to 6 P.M -> 10 Hours => Maximum number of classes = 10;
-    ClassLocation classLocation;
-
-    Class(int number, bool hasProjector, int capacity, ClassLocation classLocation)
-    {
-        this->number = number;
-        this->hasProjector = hasProjector;
-        this->capacity = capacity;
-        this->classLocation = classLocation;
-       // *this->courses.fill(NULL);
-    }
-
-};
-
 class Course {
     public:
     static int counter;
@@ -134,6 +114,84 @@ class Course {
 };
 
 int Course::counter = 0;
+
+
+class Class {
+    public:
+    int number;
+    bool hasProjector;
+    int capacity;
+    int* lessonID;
+    Course courses[10]; // 8 A.M to 6 P.M -> 10 Hours => Maximum number of classes = 10;
+    ClassLocation classLocation;
+
+    Class(int number, bool hasProjector, int capacity, ClassLocation classLocation)
+    {
+        this->number = number;
+        this->hasProjector = hasProjector;
+        this->capacity = capacity;
+        this->classLocation = classLocation;
+       // *this->courses.fill(NULL);
+    }
+
+    friend Time getFinishingTime(Course course);
+
+    // MERGE SORT
+
+    void sortCourses(Course courses[], int start, int end) {
+        if (start >= end)
+            return;
+        int mid = (start + end) / 2;
+        sortCourses(courses, start, mid);
+        sortCourses(courses, mid + 1, end);
+        merge(courses, start, mid, end);
+    }
+
+    void merge(Course courses[], int start, int mid, int end)
+    {
+        int LSize = mid - start + 1;
+        int RSize = end - mid;
+        auto *leftsubArray = new Course[LSize];
+        auto *rightsubArray = new Course[RSize];
+
+        for (auto i = 0; i < LSize; i++)
+            leftsubArray[i] = courses[start + i];
+        for (auto j = 0; j < RSize; j++)
+            rightsubArray[j] = courses[mid + 1 + j];
+
+        int i = 0, j = 0, k = start;
+
+        while (i < LSize && j < RSize)
+        {
+            // Sorting based on classes finishing time
+            if (getFinishingTime(leftsubArray[i]).startingHour <= getFinishingTime(rightsubArray[j]).startingHour){
+                courses[k] = leftsubArray[i];
+                i++;
+            } else {
+                courses[k] = rightsubArray[j];
+                j++;
+            }
+            k++;
+        }
+
+        while (i < LSize)
+        {
+            courses[k] = leftsubArray[i];
+            i++;
+            k++;
+        }
+        while(j < RSize)
+        {
+            courses[k] = rightsubArray[j];
+            j++;
+            k++;
+        }
+        delete[] leftsubArray;
+        delete[] rightsubArray;
+    }
+
+};
+
 //Class Class:: classes[];
 
 Time getFinishingTime(Course course) {
