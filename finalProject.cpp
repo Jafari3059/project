@@ -91,12 +91,14 @@ class Class {
     int capacity;
     int* lessonID;
     static Class classes[];
+    ClassLocation classLocation;
 
-    Class(int number, bool hasProjector, int capacity)
+    Class(int number, bool hasProjector, int capacity, ClassLocation classLocation)
     {
         this->number = number;
         this->hasProjector = hasProjector;
         this->capacity = capacity;
+        this->classLocation = classLocation;
     }
 
 };
