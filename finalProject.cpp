@@ -33,7 +33,7 @@ class Professor : User {
     friend Time getFinishingTime(Course course);
     friend bool checkTimeConfliction(Course course1, Course course2);
     friend bool checkLocationConfliction(Course course1, Course course2);
-    friend void assignClasses(Course course, Class currentClass);
+    friend bool assignClasses(Course course, Class currentClass);
 };
 
 class Student : User {
@@ -123,6 +123,7 @@ class Class {
     int capacity;
     int* lessonID;
     Course courses[10]; // 8 A.M to 6 P.M -> 10 Hours => Maximum number of classes = 10;
+    int length = 0;
     ClassLocation classLocation;
 
     Class(int number, bool hasProjector, int capacity, ClassLocation classLocation)
@@ -221,9 +222,16 @@ bool checkLocationConfliction(Course course1, Course course2) {
     return true;
 }
 
-void assignClasses(Course course, Class currentClass)
+bool assignClasses(Course course, Class currentClass)
 {
-    
+    for (int i = 0; i < currentClass.length; i++)
+    {
+        if (checkTimeConfliction(currentClass.courses[i], course))
+        {
+            cout<<"The course you wish to assign has time confiliction with on of the courses in this class which is " + currentClass.courses[i].name;
+            return false;
+        }
+    }
 }
 
 int main(void){
