@@ -27,8 +27,9 @@ class Professor : User {
         this->name = name;
         this->ID = ID;
         this->password = password;
+        //courses.fill(NULL);
     }
-    
+
     friend Time getFinishingTime(Course course);
     friend bool checkTimeConfliction(Course course1, Course course2);
     friend bool checkLocationConfliction(Course course1, Course course2);
@@ -84,11 +85,12 @@ class ClassLocation {
 };
 
 class Class {
+    public:
     int number;
     bool hasProjector;
     int capacity;
     int* lessonID;
-    static Class classes[];
+    Course courses[10]; // 8 A.M to 6 P.M -> 10 Hours => Maximum number of classes = 10;
     ClassLocation classLocation;
 
     Class(int number, bool hasProjector, int capacity, ClassLocation classLocation)
@@ -97,6 +99,7 @@ class Class {
         this->hasProjector = hasProjector;
         this->capacity = capacity;
         this->classLocation = classLocation;
+       // *this->courses.fill(NULL);
     }
 
 };
@@ -115,6 +118,7 @@ class Course {
     bool hasProjector;
     
     public:
+    Course(){}
     Course(string name, Professor professor, Day day, Time time, int studentCapacity, ClassLocation location, bool hasProjector)
     {
         this->id = counter++;
@@ -159,6 +163,11 @@ bool checkLocationConfliction(Course course1, Course course2) {
         
     cout<<"Can't operate the command. two classes are in location confliction";
     return true;
+}
+
+void assignClasses(Course course, Class currentClass)
+{
+
 }
 
 int main(void){
