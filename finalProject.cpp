@@ -94,12 +94,12 @@ class Course {
     Time time;
     int studentCapacity;
     int* studentList;
-    ClassLocation classLocation;
+    Class classs;
     bool hasProjector;
     
     public:
     Course(){}
-    Course(string name, Professor professor, Day day, Time time, int studentCapacity, ClassLocation location, bool hasProjector)
+    Course(string name, Professor professor, Day day, Time time, int studentCapacity, Class classs, bool hasProjector)
     {
         this->id = counter++;
         this->name = name;
@@ -107,7 +107,7 @@ class Course {
         this->day = day;
         this->time = time;
         this->studentCapacity = studentCapacity;
-        this->classLocation = classLocation;
+        this->classs = classs;
         int* studentList = new int[studentCapacity];
         this->hasProjector = hasProjector;
     }
@@ -126,6 +126,7 @@ class Class {
     int length = 0;
     ClassLocation classLocation;
 
+    Class(){};
     Class(int number, bool hasProjector, int capacity, ClassLocation classLocation)
     {
         this->number = number;
@@ -216,9 +217,30 @@ bool checkTimeConfliction(Course course1, Course course2) {
 
 
 bool checkLocationConfliction(Course course1, Course course2) {
-    if (course1.classLocation.classNumber != course2.classLocation.classNumber)
-        return false;        
-    cout<<"Can't operate the command. two classes are in location confliction. they are both held in class: " + course1.classLocation.classNumber;
+    // checking time conflictoin: 
+    if (course1.classs.classLocation.classNumber != course2.classs.classLocation.classNumber)
+    {
+        for (int i = 0; i < course1.classs.length; i++)
+            if (checkTimeConfliction(course1.classs.courses[i], course1))
+            {
+                cout<<"The course you wish to assign has time confiliction with on of the courses in this class which is " + course1.classs.courses[i].name;
+                return false;
+            }
+        for (int i = 0; i < course2.classs.length; i++)
+            if (checkTimeConfliction(course2.classs.courses[i], course2))
+            {
+                cout<<"The course you wish to assign has time confiliction with on of the courses in this class which is " + course2.classs.courses[i].name;
+                return false;
+            }
+        return true;
+    } 
+    // checking location confliction:
+    if (checkTimeConfliction(course1, course2))
+    {
+        cout<<"Can't operate the command. two classes are in location confliction. they are both held in class: " + course1.classs.classLocation.classNumber;
+        return false;
+
+    }
     return true;
 }
 
