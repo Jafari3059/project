@@ -244,18 +244,6 @@ bool checkLocationConfliction(Course course1, Course course2) {
     return true;
 }
 
-bool assignClasses(Course course, Class currentClass)
-{
-    for (int i = 0; i < currentClass.length; i++)
-    {
-        if (checkTimeConfliction(currentClass.courses[i], course))
-        {
-            cout<<"The course you wish to assign has time confiliction with on of the courses in this class which is " + currentClass.courses[i].name;
-            return false;
-        }
-    }
-}
-
 int main(void){
     // string fileName = "lessons.txt";
     // ifstream file;
